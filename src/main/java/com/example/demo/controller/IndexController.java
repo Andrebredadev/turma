@@ -9,39 +9,45 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.demo.model.Block;
+import com.example.demo.model.Course;
+import com.example.demo.model.Disciplina;
 import com.example.demo.model.SchoolClass;
-import com.example.demo.model.Student;
-import com.example.demo.model.Teacher;
+import com.example.demo.service.BlockService;
+import com.example.demo.service.CourseService;
+import com.example.demo.service.DisciplinaService;
 import com.example.demo.service.SchoolClassService;
-import com.example.demo.service.StudentService;
-import com.example.demo.service.TeacherService;
+
 
 @Controller
 public class IndexController {
 	
 	@Autowired
-	private StudentService studentService;	
-	
-	@Autowired
-	private TeacherService teacherService;
-	
-	@Autowired
 	private SchoolClassService schoolService;
+	
+	@Autowired
+	private BlockService blockService;
+	
+	@Autowired
+	private CourseService courseService;
+	
+	@Autowired
+	private DisciplinaService disciplinaService;
 	
 	//GET + LIST
 	
-	@GetMapping(value="/painelaluno")
-	public String studentPainel(Model model) {
-		List<Student> student = studentService.findAll();
-		model.addAttribute("student", student);
-		return "student/student-painel";
+	@GetMapping(value="/painelcurso")
+	public String coursePainel(Model model) {
+		List<Course> course = courseService.findAll();
+		model.addAttribute("course", course);
+		return "course/course-painel";
 	}
 	
-	@GetMapping(value="/painelprofessor")
-	public String teacherPainel(Model model) {
-		List<Teacher> teacher = teacherService.findAll();
-		model.addAttribute("teacher", teacher);
-		return "teacher/teacher-painel";
+	@GetMapping(value="/painelbloco")
+	public String blockPainel(Model model) {
+		List<Block> block = blockService.findAll();
+		model.addAttribute("block", block);
+		return "block/block-painel";
 	}
 	
 	@GetMapping(value="/painelturma")
@@ -49,6 +55,13 @@ public class IndexController {
 		List<SchoolClass> schoolClass = schoolService.findAll();
 		model.addAttribute("schoolClass", schoolClass);
 		return "schoolclass/schoolclass-painel";
+	}
+	
+	@GetMapping(value="/paineldisciplina")
+	public String disciplinaPainel(Model model) {
+		List<Disciplina> disciplina = disciplinaService.findAll();
+		model.addAttribute("disciplina", disciplina);
+		return "disciplina/disciplina-painel";
 	}
 	
 	
@@ -59,24 +72,32 @@ public class IndexController {
 		return "home";
 	}
 	
-	@GetMapping(value="/cadastroaluno")
-	public String createStudentForm(Model model) {
+	@GetMapping(value="/cadastrocurso")
+	public String createCourseForm(Model model) {
+		model.addAttribute("tipoForm", "Cadastro de");
+		return "course/create-form";
+	}
+	
+	@GetMapping(value="/cadastrobloco")
+	public String createBlockForm(Model model) {
 		List<SchoolClass> schoolClass = schoolService.findAll();
 		model.addAttribute("schoolClass", schoolClass);
 		model.addAttribute("tipoForm", "Cadastro de");
-		return "student/create-form";
+		return "block/create-form";
 	}
 	
-	@GetMapping(value="/cadastroprofessor")
-	public String createTeacherForm(Model model) {
+	@GetMapping(value="/cadastrodisciplina")
+	public String createDisciplinaForm(Model model) {
+		List<Block> block = blockService.findAll();
+		model.addAttribute("block", block);
 		model.addAttribute("tipoForm", "Cadastro de");
-		return "teacher/create-form";
+		return "disciplina/create-form";
 	}
 	
 	@GetMapping(value="/cadastroturma")
 	public String createSchoolClassForm(Model model) {
-		List<Teacher> teacher = teacherService.findAll();
-		model.addAttribute("teacher", teacher);
+		List<Course> course = courseService.findAll();
+		model.addAttribute("course", course);
 		model.addAttribute("tipoForm", "Cadastro de");
 		return "schoolclass/create-form";
 	}
@@ -84,17 +105,23 @@ public class IndexController {
 	
 	//POST
 	
-	@PostMapping(value="createStudent")
-	public String createStudent(Model model, Student student) {
-		studentService.save(student);
-		return "redirect:/painelaluno";
+	@PostMapping(value="createCourse")
+	public String createCourse(Model model, Course course) {
+		courseService.save(course);
+		return "redirect:/painelcurso";
 		
 	}
 	
-	@PostMapping(value="createTeacher")
-	public String createTeacher(Model model, Teacher teacher) {
-		teacherService.save(teacher);
-		return "redirect:/painelprofessor";
+	@PostMapping(value="createBlock")
+	public String createBlock(Model model, Block block) {
+		blockService.save(block);
+		return "redirect:/painelbloco";
+	}
+	
+	@PostMapping(value="createDisciplina")
+	public String createDisciplina(Model model, Disciplina disciplina) {
+		disciplinaService.save(disciplina);
+		return "redirect:/paineldisciplina";
 	}
 	
 	@PostMapping(value="createSchoolClass")
@@ -104,25 +131,24 @@ public class IndexController {
 	}
 	
 	//DELETE
-	//@dec DELETE ONE STUDENT
 	
-	@GetMapping(value="/delete/{id}")
-	public String deleteStudent(@PathVariable("id") Integer id) {
-		studentService.delete(id);
-		return "redirect:/painelaluno";		
+	@GetMapping(value="/delete/course/{id}")
+	public String deleteCourse(@PathVariable("id") Integer id) {
+		courseService.delete(id);
+		return "redirect:/painelcurso";		
 	}
 	
-	//DELETE
-	//@desc DELETE ONE TEACHER
-	
-	@GetMapping(value="/delete/teacher/{id}")
-	public String deleteTeacher(@PathVariable("id") Integer id) {
-		teacherService.delete(id);
-		return "redirect:/painelprofessor";
+	@GetMapping(value="/delete/block/{id}")
+	public String deleteBlock(@PathVariable("id") Integer id) {
+		blockService.delete(id);
+		return "redirect:/painelbloco";
 	}
 	
-	//DELETE
-	//@desc DELETE ONE SCHOOL CLASS
+	@GetMapping(value="/delete/disciplina/{id}")
+	public String deleteDisciplina(@PathVariable("id") Integer id) {
+		disciplinaService.delete(id);
+		return "redirect:/paineldisciplina";
+	}	
 	
 	@GetMapping(value="delete/schoolClass/{id}")
 	public String deleteSchoolClass(@PathVariable("id") Integer id) {		
@@ -130,50 +156,60 @@ public class IndexController {
 		return "redirect:/painelturma";
 	}
 	
-	//UPDATE STUDENT
-	//@desc UPDATE ONE STUDENT 
+	//UPDATE
 	
-	@GetMapping(value="/formedit/student/{id}")
-	public String updateStudentForm(@PathVariable("id") Integer id, Model model) {
-		Student student = studentService.findOne(id);
+	@GetMapping(value="/formedit/course/{id}")
+	public String updateCourseForm(@PathVariable("id") Integer id, Model model) {
+		Course course = courseService.findOne(id);
+		model.addAttribute("course", course);
+		model.addAttribute("tipoForm", "Atualizar");
+		return "course/edit-form";
+	}
+	
+	@PostMapping(value="/updateCourse")
+	public String updateCourse(Model model, Course course) {
+		courseService.save(course);
+		return "redirect:/painelcurso";		
+	}	
+	
+	@GetMapping(value="/formedit/block/{id}")
+	public String updateBlockForm(@PathVariable("id") Integer id, Model model) {
+		Block block = blockService.findOne(id);
 		List<SchoolClass> schoolClass = schoolService.findAll();
 		model.addAttribute("schoolClass", schoolClass);
-		model.addAttribute("student", student);
+		model.addAttribute("block", block);
 		model.addAttribute("tipoForm", "Atualizar");
-		return "student/edit-form";
+		return "block/edit-form";
 	}
 	
-	@PostMapping(value="/updateStudent")
-	public String updateStudent(Model model, Student student) {
-		studentService.save(student);
-		return "redirect:/painelaluno";		
+	@PostMapping(value="/updateBlock")
+	public String updateBlock(Model model, Block block) {
+		blockService.save(block);
+		return "redirect:/painelbloco";
 	}
 	
-	//UPDATE TEACHER
-	//@desc UPDATE ONE TEACHER
-	
-	@GetMapping(value="/formedit/teacher/{id}")
-	public String updateTeacherForm(@PathVariable("id") Integer id, Model model) {
-		Teacher teacher = teacherService.findOne(id);
-		model.addAttribute("teacher", teacher);
+	@GetMapping(value="/formedit/disciplina/{id}")
+	public String updateDisciplinaForm(@PathVariable("id") Integer id, Model model) {
+		Disciplina disciplina = disciplinaService.findOne(id);
+		List<Block> block = blockService.findAll();
+		model.addAttribute("disciplina", disciplina);
+		model.addAttribute("block", block);
 		model.addAttribute("tipoForm", "Atualizar");
-		return "teacher/edit-form";
+		return "disciplina/edit-form";
 	}
 	
-	@PostMapping(value="/updateTeacher")
-	public String updateTeacher(Model model, Teacher teacher) {
-		teacherService.save(teacher);
-		return "redirect:/painelprofessor";
+	@PostMapping(value="/updateDisciplina")
+	public String updateDisciplina(Model model, Disciplina disciplina) {
+		disciplinaService.save(disciplina);
+		return "redirect:paineldisciplina";
 	}
 	
-	//UPDATE SCHOOL CLASS
-	//@desc UPDATE ONE SCHOOL CLASS
 	@GetMapping(value="/formedit/schoolClass/{id}")
 	public String updateSchoolClassForm(@PathVariable("id") Integer id, Model model) {
 		SchoolClass schoolClass = schoolService.findOne(id);
-		List<Teacher> teacher = teacherService.findAll();
+		List<Course> course = courseService.findAll();
 		model.addAttribute("schoolClass", schoolClass);
-		model.addAttribute("teacher", teacher);
+		model.addAttribute("course", course);
 		model.addAttribute("tipoForm", "Atualizar");
 		return "schoolclass/edit-form";
 		

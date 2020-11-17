@@ -26,12 +26,12 @@
 		   <h3>Com spring boot</h3>
 		</div>
 
-		<h1>${tipoForm} Aluno</h1>
+		<h1>${tipoForm} Turma</h1>
 		
 		
-		<form action='<c:url value="/createStudent" />'  method="post">
+		<form action='<c:url value="/updateBlock" />'  method="post">
 		
-		   <input  type="hidden" name="id" value="${student.id}">
+		   <input  type="hidden" name="id" value="${block.id}">
 		
 		   <div class="form-group" >
 		   	   <label for="customerName">Nome</label>
@@ -39,18 +39,17 @@
 		   	      type="text"
 		   	      class="form-control"
 		   	      name="name"
-		   	      id="studentName"
-		   	      placeholder="Nome do aluno"
-		   	      value="${student.name}"
+		   	      id="blockName"
+		   	      value="${block.name}"
 		   	   >		   
 		   </div>
-		   <label for="schoolClass">Selecione uma turma: </label>
+		   <label for="course">Selecione uma turma : </label>		   
 		   <select name="schoolClass">
 		   		<c:forEach var="schoolClass" items="${schoolClass}">
 		   			<option value="${schoolClass.classID}">${schoolClass.className}</option>
 		   		</c:forEach>
 		   </select>
-		   <br> 	   
+		   <br> 
 		   
 		   <input type="submit"  class="btn btn-primary" value="Salvar" >  
 		  

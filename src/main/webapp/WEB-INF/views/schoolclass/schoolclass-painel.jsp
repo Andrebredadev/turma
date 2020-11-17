@@ -40,7 +40,7 @@
 				<tr>
 					<th>Codigo</th>
 					<th>Nome</th>
-					<th>Codigo Professor</th>					
+					<th>Codigo do Curso</th>					
 					<th>Ações</th>
 				</tr>
 			</thead>
@@ -50,7 +50,7 @@
 					<tr>
 						<td>${schoolClass.classID}</td>
 						<td>${schoolClass.className}</td>
-						<td>${schoolClass.teacher.id}</td>
+						<td>${schoolClass.course.id}</td>
 						<td>					
 						<a href='<c:url value="/formedit/schoolClass/${schoolClass.classID}" />'>
 								<button type="button" class="btn btn-primary">Editar</button>

@@ -11,23 +11,23 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Teacher {
+public class Course {
 	
 	@Id
 	@GeneratedValue
-	@Column(name="teacher_id", unique=true, nullable=false)
+	@Column(name="couse_id")
 	private Integer id;
 	
-	@Column(name="teacher_name")
+	@Column(name="course_name")
 	private String name;
 	
-	@OneToMany(mappedBy="teacher", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy = "course", cascade=CascadeType.ALL)
 	private List<SchoolClass> schoolClasses = new ArrayList<>();
-
-	public List<SchoolClass> getSchoolClasses() {
+	
+	public List<SchoolClass> getSchoolClasses(){
 		return schoolClasses;
 	}
-
+	
 	public void addSchoolClass(SchoolClass schoolClass) {
 		this.schoolClasses.add(schoolClass);
 	}
@@ -50,6 +50,8 @@ public class Teacher {
 
 	public void setName(String name) {
 		this.name = name;
-	}	
+	}
+	
+	
 
 }

@@ -3,9 +3,9 @@ package com.example.demo.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.model.Teacher;
+import com.example.demo.model.Block;
 
 @Repository
-public interface TeacherRepository extends JpaRepository<Teacher, Integer>{
+public interface BlockRepository extends JpaRepository<Block, Integer> {
 
 }

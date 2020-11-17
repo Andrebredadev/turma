@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%> 
-	
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>   
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,48 +18,58 @@
 </head>
 <body>
 
-
 	<div class="container">
-	
+
+
 		<div class="jumbotron">
 		   <h1> <i class="fa fa-tachometer" aria-hidden="true"></i> Aplicacao com springmvc</h1>
 		   <h3>Com spring boot</h3>
 		</div>
 
-		<h1>${tipoForm} Professor</h1>
-		
-		
-		<form action='<c:url value="/createTeacher" />'  method="post">
-		
-		   <input  type="hidden" name="id" value="${teacher.id}">
-		
-		   <div class="form-group" >
-		   	   <label for="customerName">Nome</label>
-		   	   <input
-		   	      type="text"
-		   	      class="form-control"
-		   	      name="name"
-		   	      id="teacherName"
-		   	      placeholder="Nome do Professor"
-		   	      value="${teacher.name}"
-		   	   >		   
-		   </div>	   
-		   
-		   <input type="submit"  class="btn btn-primary" value="Salvar" >  
-		  
-		    <a class="btn btn-secondary" href='<c:url value="/" />' ><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Voltar a pagina anterior </a>
-		
-		
-		</form>
-		
-		
-		
+		<div class="d-flex justify-content-between">
+			<h1>Painel de Curso</h1>
+			<h3>
+				<a class="btn btn-primary" href='<c:url value="/cadastrocurso" />'> Cadastrar novo Curso </a>
+			</h3>
+			<a class="btn btn-secondary" href='<c:url value="/" />' >
+				<i class="fa fa-chevron-circle-left" aria-hidden="true"></i> 
+				Voltar a pagina anterior 
+			</a>		
+
+		</div>		
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Codigo</th>
+					<th>Nome</th>
+					<th>Ações</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<c:forEach var="course" items="${course}">
+
+					<tr>
+						<td>${course.id}</td>
+						<td>${course.name}</td>
+						<td>					
+						<a href='<c:url value="/formedit/course/${course.id}" />'>
+								<button type="button" class="btn btn-primary">Editar</button>
+ 						</a> <a href='<c:url value="/delete/course/${course.id}" />'> 
+								<button type="button" class="btn btn-danger" >Excluir</button>
+						</a>
+						</td>
+					</tr>
+
+				</c:forEach>
+
+
+			</tbody>
+
+
+		</table>		
 
 	</div>
-
-
-
-
 
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

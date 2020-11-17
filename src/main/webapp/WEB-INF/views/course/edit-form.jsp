@@ -23,12 +23,12 @@
 		   <h3>Com spring boot</h3>
 		</div>
 
-		<h1>${tipoForm} Professor</h1>
+		<h1>${tipoForm} Curso</h1>
 		
 		
-		<form action='<c:url value="/updateTeacher" />'  method="post">
+		<form action='<c:url value="/updateCourse" />'  method="post">
 		
-		   <input  type="hidden" name="id" value="${teacher.id}">
+		   <input  type="hidden" name="id" value="${course.id}">
 		
 		   <div class="form-group" >
 		   	   <label for="customerName">Nome</label>
@@ -36,13 +36,12 @@
 		   	      type="text"
 		   	      class="form-control"
 		   	      name="name"
-		   	      id="studentName"
-		   	      value="${teacher.name}"		   	      
+		   	      id="courseName"
+		   	      value="${course.name}"		   	      
 		   	   >	   
 		   </div>		   
-		   <input type="submit"  class="btn btn-primary" value="Atualizar" >
-		   		  
-		    <a class="btn btn-secondary" href='<c:url value="/painelaluno" />' >
+		   <input type="submit"  class="btn btn-primary" value="Atualizar" >		   		  
+		    <a class="btn btn-secondary" href='<c:url value="/painelcurso" />' >
 		    <i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Voltar a pagina anterior </a>		
 		</form>
 	</div>

@@ -32,10 +32,13 @@
 		
 		<div class="d-flex">
 			<h3>
-				<a class="btn btn-primary" href='<c:url value="/painelaluno" />' style="margin:3px"> Painel de Alunos </a>
+				<a class="btn btn-primary" href='<c:url value="/painelcurso" />' style="margin:3px"> Painel de Curso </a>
 			</h3>
 			<h3>
-				<a class="btn btn-primary" href='<c:url value="/painelprofessor" />'> Painel de Professor </a>
+				<a class="btn btn-primary" href='<c:url value="/painelbloco" />'> Painel de Bloco </a>
+			</h3>
+			<h3>
+				<a class="btn btn-primary" href='<c:url value="/paineldisciplina" />'> Painel de Disciplina </a>
 			</h3>
 			<h3>
 				<a class="btn btn-primary" href='<c:url value="/painelturma" />' style="margin:3px"> Painel de Turma </a>

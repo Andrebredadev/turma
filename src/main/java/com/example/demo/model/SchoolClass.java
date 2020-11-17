@@ -23,31 +23,31 @@ public class SchoolClass {
 	@Column(name="class_name")
 	private String className;	
 	
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="teacher_id")
-	private Teacher teacher;
-	
 	@OneToMany(mappedBy="schoolClass", cascade=CascadeType.ALL)
-	private List<Student> students = new ArrayList<>();	
-
-	public List<Student> getStudents() {
-		return students;
-	}
-
-	public void addStudent(Student student) {
-		this.students.add(student);
+	private List<Block> blocks = new ArrayList<>();
+	
+	public List<Block> getBlocks(){
+		return blocks;
 	}
 	
-	public void removeStudent(Student student) {
-		this.students.remove(student);
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="course_id")
+	private Course course;	
+
+	public Course getCourse() {
+		return course;
 	}
 
-	public Teacher getTeacher() {
-		return teacher;
+	public void setCourse(Course course) {
+		this.course = course;
 	}
-
-	public void setTeacher(Teacher teacher) {
-		this.teacher = teacher;
+	
+	public void addBlock(Block block) {
+		this.blocks.add(block);
+	}
+	
+	public void removeBlock(Block block) {
+		this.blocks.remove(block);
 	}
 
 	public Integer getClassID() {

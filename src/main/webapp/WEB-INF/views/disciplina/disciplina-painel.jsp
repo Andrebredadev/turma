@@ -27,9 +27,9 @@
 		</div>
 
 		<div class="d-flex justify-content-between">
-			<h1>Painel de Aluno</h1>
+			<h1>Painel de Disciplina</h1>
 			<h3>
-				<a class="btn btn-primary" href='<c:url value="/cadastroaluno" />'> Cadastrar novo Aluno </a>
+				<a class="btn btn-primary" href='<c:url value="/cadastrodisciplina" />'> Cadastrar nova Disciplina</a>
 			</h3>
 			<a class="btn btn-secondary" href='<c:url value="/" />' >
 				<i class="fa fa-chevron-circle-left" aria-hidden="true"></i> 
@@ -42,22 +42,22 @@
 				<tr>
 					<th>Codigo</th>
 					<th>Nome</th>
-					<th>Codigo da Turma</th>					
+					<th>Codigo do Bloco</th>					
 					<th>Ações</th>
 				</tr>
 			</thead>
 
 			<tbody>
-				<c:forEach var="student" items="${student}">
+				<c:forEach var="disciplina" items="${disciplina}">
 
 					<tr>
-						<td>${student.id}</td>
-						<td>${student.name}</td>
-						<td>${student.schoolClass.classID}</td>
+						<td>${disciplina.id}</td>
+						<td>${disciplina.name}</td>
+						<td>${disciplina.block.id}</td>
 						<td>					
-						<a href='<c:url value="/formedit/student/${student.id}" />'>
+						<a href='<c:url value="/formedit/disciplina/${disciplina.id}" />'>
 								<button type="button" class="btn btn-primary">Editar</button>
- 						</a> <a href='<c:url value="/delete/${student.id}" />'> 
+ 						</a> <a href='<c:url value="/delete/disciplina/${disciplina.id}" />'> 
 								<button type="button" class="btn btn-danger" >Excluir</button>
 						</a>
 						</td>

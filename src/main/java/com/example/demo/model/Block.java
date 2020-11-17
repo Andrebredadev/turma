@@ -1,5 +1,8 @@
 package com.example.demo.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,16 +10,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
-public class Student {
+public class Block {
 	
 	@Id
 	@GeneratedValue
-	@Column(name="student_id", unique=true, nullable = false)
+	@Column(name="block_id", unique=true, nullable = false)
 	private Integer id;
 	
-	@Column(name="student_name")
+	@Column(name="block_name")
 	private String name;
 	
 	@ManyToOne(cascade=CascadeType.ALL)
@@ -25,6 +29,22 @@ public class Student {
 
 	public SchoolClass getSchoolClass() {
 		return schoolClass;
+	}
+	
+	@OneToMany(mappedBy="block", cascade=CascadeType.ALL)
+	private List<Disciplina> disciplinas = new ArrayList<>();
+	
+	public List<Disciplina> getDisciplina(){
+		return disciplinas;
+	}
+	
+
+	public void addDisciplina(Disciplina disciplina) {
+		this.disciplinas.add(disciplina);
+	}
+	
+	public void removeBlock(Disciplina disciplina) {
+		this.disciplinas.remove(disciplina);
 	}
 
 	public void setSchoolClass(SchoolClass schoolClass) {

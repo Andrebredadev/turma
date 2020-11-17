@@ -26,35 +26,35 @@
 		   <h3>Com spring boot</h3>
 		</div>
 
-		<h1>${tipoForm} Turma</h1>
+		<h1>${tipoForm} Bloco</h1>
 		
 		
-		<form action='<c:url value="/createSchoolClass" />'  method="post">
+		<form action='<c:url value="/createBlock" />'  method="post">
 		
-		   <input  type="hidden" name="classID" value="${schoolClass.id}">
+		   <input  type="hidden" name="id" value="${block.id}">
 		
 		   <div class="form-group" >
 		   	   <label for="customerName">Nome</label>
 		   	   <input
 		   	      type="text"
 		   	      class="form-control"
-		   	      name="className"
-		   	      id="schoolName"
-		   	      placeholder="Nome da Turma"
-		   	      value="${schoolClass.name}"
+		   	      name="name"
+		   	      id="blockName"
+		   	      placeholder="Nome do Bloco"
+		   	      value="${block.name}"
 		   	   >		   
 		   </div>
-		   <label for="course">Selecione um curso : </label>		   
-		   <select name="course">
-		   		<c:forEach var="course" items="${course}">
-		   			<option value="${course.id}">${course.name}</option>
+		   <label for="course">Selecione uma turma : </label>		   
+		   <select name="schoolClass">
+		   		<c:forEach var="schoolClass" items="${schoolClass}">
+		   			<option value="${schoolClass.classID}">${schoolClass.className}</option>
 		   		</c:forEach>
 		   </select>
 		   <br> 
 		   
 		   <input type="submit"  class="btn btn-primary" value="Salvar" >  
 		  
-		    <a class="btn btn-secondary" href='<c:url value="/" />' ><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Voltar a pagina anterior </a>
+		    <a class="btn btn-secondary" href='<c:url value="/painelbloco" />' ><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Voltar a pagina anterior </a>
 		
 		
 		</form>

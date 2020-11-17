@@ -41,10 +41,10 @@
 		   	      value="${schoolClass.className}"		   	      
 		   	   >	   
 		   </div>
-		   <label for="teacher">Selecione um professor: </label>		   
-		   <select name="teacher">
-		   		<c:forEach var="teacher" items="${teacher}">
-		   			<option value="${teacher.id}" name="schoolClass">${teacher.name}</option>
+		   <label for="teacher">Selecione um curso: </label>		   
+		   <select name="course">
+		   		<c:forEach var="course" items="${course}">
+		   			<option value="${course.id}">${course.name}</option>
 		   		</c:forEach>
 		   </select>
 		   <br> 	   

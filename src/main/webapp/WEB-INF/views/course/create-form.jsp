@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>   
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%> 
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,57 +18,35 @@
 </head>
 <body>
 
+
 	<div class="container">
-
-
+	
 		<div class="jumbotron">
 		   <h1> <i class="fa fa-tachometer" aria-hidden="true"></i> Aplicacao com springmvc</h1>
 		   <h3>Com spring boot</h3>
 		</div>
 
-		<div class="d-flex justify-content-between">
-			<h1>Painel de Professor</h1>
-			<h3>
-				<a class="btn btn-primary" href='<c:url value="/cadastroprofessor" />'> Cadastrar novo Professor </a>
-			</h3>
-			<a class="btn btn-secondary" href='<c:url value="/" />' >
-				<i class="fa fa-chevron-circle-left" aria-hidden="true"></i> 
-				Voltar a pagina anterior 
-			</a>		
-
-		</div>		
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Codigo</th>
-					<th>Nome</th>					
-					<th>Ações</th>
-				</tr>
-			</thead>
-
-			<tbody>
-				<c:forEach var="teacher" items="${teacher}">
-
-					<tr>
-						<td>${teacher.id}</td>
-						<td>${teacher.name}</td>
-						<td>					
-						<a href='<c:url value="/formedit/teacher/${teacher.id}" />'>
-								<button type="button" class="btn btn-primary">Editar</button>
- 						</a> <a href='<c:url value="/delete/teacher/${teacher.id}" />'> 
-								<button type="button" class="btn btn-danger" >Excluir</button>
-						</a>
-						</td>
-					</tr>
-
-				</c:forEach>
-
-
-			</tbody>
-
-
-		</table>		
-
+		<h1>${tipoForm} Curso</h1>
+		
+		
+		<form action='<c:url value="/createCourse" />'  method="post">
+		
+		   <input  type="hidden" name="id" value="${course.id}">
+		
+		   <div class="form-group" >
+		   	   <label for="customerName">Nome</label>
+		   	   <input
+		   	      type="text"
+		   	      class="form-control"
+		   	      name="name"
+		   	      id="studentName"
+		   	      placeholder="Nome do aluno"
+		   	      value="${course.name}"
+		   	   >		   
+		   </div>		   
+		   <input type="submit"  class="btn btn-primary" value="Salvar" > 		  
+		    <a class="btn btn-secondary" href='<c:url value="/" />' ><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Voltar a pagina anterior </a>		
+		</form>
 	</div>
 
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
