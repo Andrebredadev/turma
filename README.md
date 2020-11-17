@@ -26,6 +26,8 @@ Um bloco possui varias disciplinas
 ## Try me
 Acesse clicando [aqui](http://turmaapp.herokuapp.com/escola/) uma versão do projeto rodando.
 ## TODO
- - [ ] Retirar o delete de cascata e tratar os dados apenas retirando as FK de seus respectivos campos. 
+ - [ ] Retirar o delete de cascata e tratar os dados apenas retirando as FK de seus respectivos campos.
+ - [ ] Tratar exceções. 
+ - [ ] Adicionar paginas de erro.
 ## Explicação de Dependencias
 Spring Boot tras tudo necessario para criar uma aplicação WEB na criaçào do projeto, por exemplo: Ao iniciar um projeto Spring ja se pode selecionar dependencia de conexào ao mysql, servidor web etc.
