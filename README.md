@@ -11,8 +11,8 @@ Um bloco possui varias disciplinas
 
 ## Pré-Requisitos
 
-[Java 8](https://www.oracle.com/br/java/technologies/javase/javase-jdk8-downloads.html)
-[Mysql](https://www.mysql.com/)
+ - [Java 8](https://www.oracle.com/br/java/technologies/javase/javase-jdk8-downloads.html)
+ - [Mysql](https://www.mysql.com/)
 
 ## Dependencias
 
@@ -21,6 +21,7 @@ Um bloco possui varias disciplinas
  - Clone o projeto
  - `git clone https://github.com/Andrebredadev/turma.git`
  - Maven Update
+ - Troque o usuario e senha do banco de dados em src/main/resources/application.properties
  - Inicie a aplicação como Spring Boot App - 
 ## Try me
 Acesse clicando [aqui](http://turmaapp.herokuapp.com/escola/) uma versão do projeto rodando.
